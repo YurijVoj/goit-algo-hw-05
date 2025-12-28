@@ -5,7 +5,7 @@ from typing import Callable
 # Створюємо генератор для пошуку чисел з плаваючою крапкою у тексті
 def generator_numbers(text: str):
     # Використовуємо регулярний вираз для пошуку чисел з плаваючою крапкою
-    pattern_simple = r"\s?\d*\.\d+\s"
+    pattern_simple = r"\s+\d+\.\d*\s+"
     # Знаходимо всі відповідності в тексті на основі шаблону та зберігаємо їх у список
     numbers_simple = re.findall(pattern_simple, text)
     # Перетворюємо знайдені рядки у числа з плаваючою крапкою

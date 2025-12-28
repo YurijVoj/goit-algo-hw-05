@@ -1,4 +1,6 @@
 from functools import wraps
+
+
 def input_error(func):
     @wraps(func)
     def inner(*args, **kwargs):
@@ -10,18 +12,25 @@ def input_error(func):
             return "This contact does not exist."
         except IndexError:
             return "Invalid input. Please provide the required information."
-    return inner   
+        except AttributeError:
+            return "Invalid input. Please provide the required information."
+    return inner 
+  
 
-
+@input_error
 def parse_input(user_input):
     cmd, *args = user_input.split()
     cmd = cmd.strip().lower()
     return cmd, *args
+
+
 @input_error
 def add_contact(args, contacts):
     name, phone = args
     contacts[name] = phone
     return "Contact added."
+
+
 @input_error
 def change_contact(args, contacts):
     name, phone = args
@@ -30,6 +39,8 @@ def change_contact(args, contacts):
         return "Contact updated."
     else:
         return "Contact not found."
+    
+
 @input_error
 def show_phone(args, contacts):
         name = args[0]
@@ -37,12 +48,16 @@ def show_phone(args, contacts):
             return f"{name}: {contacts[name]}"
         else:
             return "Contact not found."
+        
+
 @input_error        
 def show_all_contacts(contacts): 
     if contacts:
         return "\n".join(f"{name}: {phone}" for name, phone in contacts.items())
     else:
-        return "No contacts found."           
+        return "No contacts found." 
+
+
 def main():
     contacts = {}
     print("Welcome to the assistant bot!")
