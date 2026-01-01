@@ -1,14 +1,13 @@
 import argparse
 from pathlib import Path
 
-
 parser = argparse.ArgumentParser( description="Скрипт обробляє лог-файл та приймає необов'язковий аргумент.")
-parser.add_argument('optional_arg', nargs='?', default=None, help="Необов'язковий аргумент, що йде після шляху до логу.")
-# # Обов'язковий аргумент: шлях до лог-файлу
-# parser.add_argument('log_file_path', type=str, help='Шлях до файлу логів, який потрібно обробити.')
-# # Необов'язковий аргумент: додаткова опція (наприклад, рівень логування)
-# parser.add_argument( '--level', type=str, help='Рівень логування (наприклад, DEBUG, INFO, WARNING).', default=None)
-# # створюємо об'єкт з отриманими аргументами                    
+#parser.add_argument('optional_arg', nargs='?', default=None, help="Необов'язковий аргумент, що йде після шляху до логу.")
+# Обов'язковий аргумент: шлях до лог-файлу
+parser.add_argument('log_file_path', type=str, help='Шлях до файлу логів, який потрібно обробити.')
+# Необов'язковий аргумент: додаткова опція (наприклад, рівень логування)
+parser.add_argument( 'level', type=str, help='Рівень логування (наприклад, DEBUG, INFO, WARNING).', default=None)
+# створюємо об'єкт з отриманими аргументами                    
 args = parser.parse_args()
 
 
